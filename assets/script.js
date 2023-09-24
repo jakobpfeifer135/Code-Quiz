@@ -32,6 +32,7 @@ function submitAnswer(questionId) {
         const correctAnswers = {
             "q1": ["b"], // Add correct answers for each 
             "q2": ["c"]
+            
         };
 
         const feedbackElement = document.createElement("p");
