@@ -32,7 +32,7 @@ function submitAnswer(questionId) {
         const correctAnswers = {
             "q1": ["b"], // Add correct answers for each 
             "q2": ["c"]
-            
+
         };
 
         const feedbackElement = document.createElement("p");
@@ -77,3 +77,58 @@ function endQuiz() {
 }
 
 const timerInterval = setInterval(updateTimer, 1000);
+
+// var questions = {
+// question1 : "In magic the gathering how many colors are their",
+// question2 : "in magic the gathering when can you cast sorceries",
+// question3 : "in magic the gathering you lose when you take how much commander damage",
+// question4 : "in magic the gathering in what order does your turn begin",
+// question5 : "what color in magic the gathering is most known for life-gain?"
+
+// }
+
+// var correctAnswers = {
+//    question1: "5",
+//    question2: "on only your turn",
+//    question3: "21",
+//    question4: "un-tap, upkeep, draw",
+//    question5: "white"
+
+// }
+
+// var firstQuestion = {
+//  question1Option1 : "4",
+//  question1Option2 : "5",
+//  question1Option3 : "3",
+//  question1Option4 : "6"
+// }
+
+// var secondQuestion = {
+// question2Option1 : "on your turn and your opponents turn",
+// question2Option2 : "on only your opponents turn",
+// question2Option3 : "on only your turn",
+// question2Option4 : "only at the beginning of your turn",
+
+// }
+
+// var thirdQuestion = {
+// question3Option1 : "20",
+// question3Option2 : "21",
+// question3Option3 : "15",
+// question3Option4 : "10"
+// }
+
+// var fourthQuestion = {
+// question4Option1 : "draw, upkeep, un-tap",
+// question4Option2 : "upkeep, draw, un-tap",
+// question4Option3 : "upkeep, un-tap, draw",
+// question4Option4 : "un-tap, upkeep, draw",
+// }
+
+// var fifthQuestion = {
+// question5Option1 : "blue",
+// question5Option2 : "red",
+// question5Option3 : "white",
+// question5Option4 : "green",
+// }
+
