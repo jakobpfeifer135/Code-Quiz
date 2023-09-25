@@ -184,3 +184,4 @@ function endQuiz() {
 // const timerInterval = setInterval(updateTimer, 1000);
 
 endQuizTagName.setAttribute("style", "text-align: center; font-size: 40px;")
+Variables

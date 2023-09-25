@@ -1,66 +1,86 @@
+body, h1, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-}
-
-h1 {
+    background-color: #f4f4f4;
     text-align: center;
 }
 
-.question {
+h1 {
+    background-color: #0074d9;
+    color: #fff;
+    padding: 20px;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
 }
 
-.options {
+/* Quiz Container Styles */
+#quizContainer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+/* Start Button Styles */
+#startButton {
+    background-color: #0074d9;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Question and Choices Styles */
+#question {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#choices {
     list-style: none;
     padding: 0;
 }
 
-.options li {
+#choices li {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#choices li:hover {
+    background-color: #e0e0e0;
+}
+
+/* Timer and Score Styles */
+.timer, #quizScore {
+    font-size: 18px;
     margin-bottom: 10px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
+/* High Scores List Styles */
+#highScoresList {
+    list-style: none;
+    padding: 0;
 }
 
-.score {
+#highScoresList li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Center the quiz container and start button */
+#quizContainer, #startButton {
     text-align: center;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.timer {
-    text-align: center;
-    font-weight: bold;
-    font-size: 24px;
-    margin-top: 20px;
-    align-items: center;
-    justify-content: center
-}
-
-.start-button {
-   padding: 20px 40px;
-   background-color: lightgreen;
-   border: 3px solid black;
-   font-size: 25px;
-   font-family: mono;
 }
