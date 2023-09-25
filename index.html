@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Code Quiz</title>
-    <link rel="stylesheet" type="text/css" href="./assets/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Game</title>
 
-<body>
-    <div class="container">
-        <h1>JavaScript Code Quiz</h1>
-       
-        <div class="timer" id="quizTimer">
-            <h4>Timer 60 seconds</h4>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+  </head>
+  <body>
+    <h1>Quiz Game</h1>
 
-        </div>
-        
-        <div class="question" id="question1">
-            
-            <button class="start-button">Start</button>
-            
-        </div>
-
-       
-
-        <div class="score" id="quizScore"></div>
+    <!-- Quiz Container - Initially hidden until start button is pressed -->
+    <div id="quizContainer" style="display: none">
+      <p id="question">Question goes here</p>
+      <ul id="choices">
+        <!-- Choices will be displayed here using JavaScript -->
+      </ul>
+      <button id="submitAnswer">Submit Answer</button>
     </div>
 
+    <!-- Start Button - Click to begin the quiz -->
+    <button id="startButton">Start Quiz</button>
+
+    <!-- Timer Display -->
+    <p class="timer">Time Left: <span id="timerValue">0</span></p>
+
+    <!-- Final Score Display -->
+    <p id="quizScore">Your Score: 0</p>
+
+    <!-- High Scores List (optional) -->
+    <h2>High Scores</h2>
+    <ul id="highScoresList">
+      <!-- High scores will be displayed here using JavaScript -->
+    </ul>
+
     <script src="./assets/script.js"></script>
-</body>
+  </body>
 </html>

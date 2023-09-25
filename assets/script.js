@@ -1,17 +1,17 @@
 var score = 0;
 var timeLeft = 5; // 1 minute
-var currentQuestion = 1;
+var currentQuestion = 0;
 var answeredQuestions = {};
 var startButton = document.querySelector(".start-button")
 var timerElement = document.querySelector(".timer")
 var questions = [
   {
-    questionTitle: "In magic the gathering how many colors are there",
+    question: "In magic the gathering how many colors are there",
     choices: ["4", "5", "3", "6"],
     answer: "5",
   },
   {
-    questionTitle: "in magic the gathering when can you cast sorceries",
+    question: "in magic the gathering when can you cast sorceries",
     choices: [
       "on your turn and your opponents turn",
       "on only your opponents turn",
@@ -21,13 +21,13 @@ var questions = [
     answer: "on only your turn",
   },
   {
-    questionTitle:
+    question:
       "in magic the gathering you lose when you take how much commander damage",
     choices: ["20", "21", "15", "10"],
     answer: "21",
   },
   {
-    questionTitle: "in magic the gathering in what order does your turn begin",
+    question: "in magic the gathering in what order does your turn begin",
     choices: [
       "draw, upkeep, un-tap",
       "upkeep, draw, un-tap",
@@ -37,7 +37,7 @@ var questions = [
     answer: "un-tap, upkeep, draw",
   },
   {
-    questionTitle:
+    question:
       "what color in magic the gathering is most known for life-gain?",
     choices: ["blue", "red", "white", "green"],
     answer: "white",
@@ -46,19 +46,42 @@ var questions = [
 var body = document.body;
 var endQuizTagName = document.createElement("h4");
 endQuizTagName.textContent = "Game Over"
+var isQuestion5Answered = false;
 
 
 //TODO make an if statement that says if choice === !answer deduct 10 from time-left until time =0
+function pointDeduct (){
+    if (choice !== answer) {
+        timeLeft -= 10;
+    }
+}
 
 
-//TODO make a conditional that says once time-left >= 0 alert you lose
 
 
 //TODO make a if statement that says once last question is answered take the time left as a score and put it in local storage
-
+function lastQuestion() {
+    // Check if it's the last question
+    if (isQuestion5Answered) {
+        // Store the remaining time (score) in local storage
+        localStorage.setItem('score', timeLeft);
+    }
+}
 
 //TODO once they get their score let them add 3 letters for initials and add that as a key and use the score as the value
+function storeInitials(score, initials) {
+    // Get the existing scores from local storage (if any)
+    const scores = JSON.parse(localStorage.getItem('scores')) || [];
 
+    // Add the new score and initials as an object to the scores array
+    scores.push({ score, initials });
+
+    // Sort the scores by score value (assuming higher scores are better)
+    scores.sort((a, b) => b.score - a.score);
+
+    // Store the updated scores array in local storage
+    localStorage.setItem('scores', JSON.stringify(scores));
+}
 
 //TODO make a high-score list on page using a getItem from both the key and value and display that.
 
@@ -70,6 +93,7 @@ endQuizTagName.textContent = "Game Over"
 startButton.addEventListener("click", function() {
 
     startButton.disabled = true;
+    displayQuestion();
   
    
     timerElement.textContent = timeLeft;
