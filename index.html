@@ -10,27 +10,19 @@
 <body>
     <div class="container">
         <h1>JavaScript Code Quiz</h1>
-        <div class="timer" id="quizTimer">Time Left: 2:00</div>
+       
+        <div class="timer" id="quizTimer">
+            <h4>Timer 60 seconds</h4>
+
+        </div>
+        
         <div class="question" id="question1">
-            <p>1. What is the result of 2 + 2 in JavaScript?</p>
-            <ul class="options">
-                <li><input type="radio" name="q1" value="a"> 3</li>
-                <li><input type="radio" name="q1" value="b"> 4</li>
-                <li><input type="radio" name="q1" value="c"> 5</li>
-            </ul>
-            <button class="btn" onclick="submitAnswer('q1')">Submit</button>
+            
+            <button class="start-button">Start</button>
+            
         </div>
 
-        <div class="question" id="question2">
-            <p>2. How do you declare a variable in JavaScript?</p>
-             <!-- we use the radio input type for questions with multiple choices each one can have its own value attribute -->
-            <ul class="options">
-                <li><input type="radio" name="q2" value="a"> var apple = 42;</li>
-                <li><input type="radio" name="q2" value="b"> variable myVar = 42;</li>
-                <li><input type="radio" name="q2" value="c"> let myVar = 42;</li>
-            </ul>
-            <button class="btn" onclick="submitAnswer('q2')">Submit</button>
-        </div>
+       
 
         <div class="score" id="quizScore"></div>
     </div>

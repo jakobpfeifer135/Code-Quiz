@@ -1,9 +1,9 @@
 var score = 0;
-var timeLeft = 60; // 1 minute
+var timeLeft = 5; // 1 minute
 var currentQuestion = 1;
 var answeredQuestions = {};
-
-
+var startButton = document.querySelector(".start-button")
+var timerElement = document.querySelector(".timer")
 var questions = [
   {
     questionTitle: "In magic the gathering how many colors are there",
@@ -43,6 +43,54 @@ var questions = [
     answer: "white",
   },
 ];
+var body = document.body;
+var endQuizTagName = document.createElement("h4");
+endQuizTagName.textContent = "Game Over"
+
+
+//TODO make an if statement that says if choice === !answer deduct 10 from time-left until time =0
+
+
+//TODO make a conditional that says once time-left >= 0 alert you lose
+
+
+//TODO make a if statement that says once last question is answered take the time left as a score and put it in local storage
+
+
+//TODO once they get their score let them add 3 letters for initials and add that as a key and use the score as the value
+
+
+//TODO make a high-score list on page using a getItem from both the key and value and display that.
+
+
+//TODO create a function that will display the next question and choices once they answer the following question
+
+
+//TODO create a start button that wont display the questions until pressed
+startButton.addEventListener("click", function() {
+
+    startButton.disabled = true;
+  
+   
+    timerElement.textContent = timeLeft;
+  
+    timer = setInterval(function() {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+  
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        
+        startButton.disabled = false;
+       
+      }
+      if (timeLeft <= 0) {
+        
+        body.appendChild(endQuizTagName)
+      }
+      
+    }, 1000)
+}),
 
 function updateTimer() {
   const timerElement = document.getElementById("quizTimer");
@@ -60,7 +108,7 @@ function updateTimer() {
     timeLeft--;
   }
 }
-// this should return an alert if they try to answer the question more than once
+
 
 function submitAnswer(questionId) {
   if (answeredQuestions[questionId]) {
@@ -109,49 +157,6 @@ function endQuiz() {
 //   document.getElementById("question2").style.display = "none";
  }
 
-const timerInterval = setInterval(updateTimer, 1000);
+// const timerInterval = setInterval(updateTimer, 1000);
 
-// var questions = {
-// question1 : "In magic the gathering how many colors are their",
-// question2 : "in magic the gathering when can you cast sorceries",
-// question3 : "in magic the gathering you lose when you take how much commander damage",
-// question4 : "in magic the gathering in what order does your turn begin",
-// question5 : "what color in magic the gathering is most known for life-gain?"
-
-// }
-
-// var correctAnswers = {
-//    question1: "5",
-//    question2: "on only your turn",
-//    question3: "21",
-//    question4: "un-tap, upkeep, draw",
-//    question5: "white"
-
-// }
-
-// var firstQuestion = {
-//  question1Option1 : "4",
-//  question1Option2 : "5",
-//  question1Option3 : "3",
-//  question1Option4 : "6"
-// }
-
-// var secondQuestion = {
-//  "on your turn and your opponents turn",
-//  "on only your opponents turn",
-//  "on only your turn",
-//  "only at the beginning of your turn",
-
-// }
-
-// var thirdQuestion = {
-
-// }
-
-// var fourthQuestion = {
-
-// }
-
-// var fifthQuestion = {
-
-// }
+endQuizTagName.setAttribute("style", "text-align: center; font-size: 40px;")
