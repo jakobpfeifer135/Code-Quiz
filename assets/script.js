@@ -1,9 +1,11 @@
-var score = 0;
-var timeLeft = 5; // 1 minute
-var currentQuestion = 0;
-var answeredQuestions = {};
-var startButton = document.querySelector(".start-button")
-var timerElement = document.querySelector(".timer")
+var timeLeft = 60; // 60 seconds (1 minute)
+var score = 0; // Initialize the score to 0
+var startButton = document.getElementById("startButton");
+var quizContainer = document.getElementById("quizContainer");
+var timerElement = document.getElementById("timerValue");
+var quizScoreElement = document.getElementById("quizScore");
+
+// Questions, Choices, and Answers
 var questions = [
   {
     question: "In magic the gathering how many colors are there",
@@ -11,7 +13,7 @@ var questions = [
     answer: "5",
   },
   {
-    question: "in magic the gathering when can you cast sorceries",
+    question: "In magic the gathering when can you cast sorceries",
     choices: [
       "on your turn and your opponents turn",
       "on only your opponents turn",
@@ -22,12 +24,12 @@ var questions = [
   },
   {
     question:
-      "in magic the gathering you lose when you take how much commander damage",
+      "In magic the gathering you lose when you take how much commander damage",
     choices: ["20", "21", "15", "10"],
     answer: "21",
   },
   {
-    question: "in magic the gathering in what order does your turn begin",
+    question: "In magic the gathering in what order does your turn begin",
     choices: [
       "draw, upkeep, un-tap",
       "upkeep, draw, un-tap",
@@ -38,15 +40,21 @@ var questions = [
   },
   {
     question:
-      "what color in magic the gathering is most known for life-gain?",
+      "What color in magic the gathering is most known for life-gain?",
     choices: ["blue", "red", "white", "green"],
     answer: "white",
   },
 ];
-var body = document.body;
-var endQuizTagName = document.createElement("h4");
-endQuizTagName.textContent = "Game Over"
-var isQuestion5Answered = false;
+
+var currentQuestionIndex = 0; // Initialize currentQuestionIndex
+
+// Event listener for the start button
+startButton.addEventListener("click", function () {
+  startButton.disabled = true;
+  quizContainer.style.display = "block"; // Show the quiz container
+  startTimer();
+  displayQuestion(); // Display the first question
+});
 
 
 //TODO make an if statement that says if choice === !answer deduct 10 from time-left until time =0
