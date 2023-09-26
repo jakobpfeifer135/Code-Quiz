@@ -113,7 +113,7 @@ function startTimer() {
 // Function to end the quiz
 function endQuiz() {
     quizContainer.style.display = "none"; // Hide the quiz container
-    quizScoreElement.textContent = "Your Score: " + score;
+    quizScoreElement.textContent = "Questions answered correctly: " + score;
     storeHighScore();
   }
   
