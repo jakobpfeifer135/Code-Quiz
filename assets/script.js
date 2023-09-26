@@ -56,7 +56,60 @@ startButton.addEventListener("click", function () {
   displayQuestion(); // Display the first question
 });
 
+// Function to start the timer
+function startTimer() {
+    var timer = setInterval(function () {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+  
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        endQuiz();
+      }
+    }, 1000);
+  }
+  
+  // Function to display the current question and choices
+  function displayQuestion() {
+    var questionElement = document.getElementById("question");
+    var choicesList = document.getElementById("choices");
+  
+    var currentQuestion = questions[currentQuestionIndex];
+  
+    // Display the question
+    questionElement.textContent = currentQuestion.question;
+  
+    // Clear previous choices
+    choicesList.innerHTML = "";
+  
+    // Display answer choices
+    currentQuestion.choices.forEach(function (choice, index) {
+      var listItem = document.createElement("li");
+      listItem.textContent = choice;
+      listItem.addEventListener("click", function () {
+        // Check if the selected choice is correct
+        if (choice === currentQuestion.answer) {
+          // Increment score if correct
+          score++;
+        } else {
+          // Deduct 10 seconds for incorrect answers
+          timeLeft -= 10;
+        }
+  
+        // Move to the next question
+        currentQuestionIndex++;
+  
+    // Check if there are more questions
+    if (currentQuestionIndex < questions.length) {
+        displayQuestion(); // Display the next question
+      } else {
+        endQuiz();
+      }
+    });
 
+    choicesList.appendChild(listItem);
+  });
+}
 //TODO make an if statement that says if choice === !answer deduct 10 from time-left until time =0
 function pointDeduct (){
     if (choice !== answer) {
