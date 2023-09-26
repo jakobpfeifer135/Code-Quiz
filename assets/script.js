@@ -110,139 +110,39 @@ function startTimer() {
     choicesList.appendChild(listItem);
   });
 }
-//TODO make an if statement that says if choice === !answer deduct 10 from time-left until time =0
-function pointDeduct (){
-    if (choice !== answer) {
-        timeLeft -= 10;
-    }
-}
-
-
-
-
-//TODO make a if statement that says once last question is answered take the time left as a score and put it in local storage
-function lastQuestion() {
-    // Check if it's the last question
-    if (isQuestion5Answered) {
-        // Store the remaining time (score) in local storage
-        localStorage.setItem('score', timeLeft);
-    }
-}
-
-//TODO once they get their score let them add 3 letters for initials and add that as a key and use the score as the value
-function storeInitials(score, initials) {
-    // Get the existing scores from local storage (if any)
-    const scores = JSON.parse(localStorage.getItem('scores')) || [];
-
-    // Add the new score and initials as an object to the scores array
-    scores.push({ score, initials });
-
-    // Sort the scores by score value (assuming higher scores are better)
-    scores.sort((a, b) => b.score - a.score);
-
-    // Store the updated scores array in local storage
-    localStorage.setItem('scores', JSON.stringify(scores));
-}
-
-//TODO make a high-score list on page using a getItem from both the key and value and display that.
-
-
-//TODO create a function that will display the next question and choices once they answer the following question
-
-
-//TODO create a start button that wont display the questions until pressed
-startButton.addEventListener("click", function() {
-
-    startButton.disabled = true;
-    displayQuestion();
-  
-   
-    timerElement.textContent = timeLeft;
-  
-    timer = setInterval(function() {
-      timeLeft--;
-      timerElement.textContent = timeLeft;
-  
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        
-        startButton.disabled = false;
-       
-      }
-      if (timeLeft <= 0) {
-        
-        body.appendChild(endQuizTagName)
-      }
-      
-    }, 1000)
-}),
-
-function updateTimer() {
-  const timerElement = document.getElementById("quizTimer");
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  //This line of code is used to update the text content of an HTML element with the id "quizTimer" to display the remaining time in minutes and seconds.
-  timerElement.textContent = `Time Left: ${minutes}:${
-    seconds < 10 ? "0" : ""
-  }${seconds}`;
-  //this allows the quiz to end once the time hits 0
-  if (timeLeft === 0) {
-    clearInterval(timerInterval);
-    endQuiz();
-  } else {
-    timeLeft--;
-  }
-}
-
-
-function submitAnswer(questionId) {
-  if (answeredQuestions[questionId]) {
-    alert("You have already answered this question.");
-    return;
-  }
-  // selecting the css element and storing the users selected answer
-  // it selects the user's chosen answer to the current question by looking for the checked input element with a specific name attribute
-  const selectedAnswer = document.querySelector(
-    `input[name="${questionId}"]:checked`
-  );
-
-  
-
-    if (correctAnswers[questionId].includes(selectedAnswer.value)) {
-      score++;
-    } else {
-      timeLeft -= 15; // Deduct 15 seconds for incorrect answers
-    }
-
-    answeredQuestions[questionId] = true;
-    //sets up a timer to execute this code after a 2 second delay
-    setTimeout(() => {
-      currentQuestion++;
-      if (currentQuestion <= 2) {
-        const nextQuestionId = `question${currentQuestion}`;
-        document.getElementById(questionId).style.display = "none";
-        document.getElementById(nextQuestionId).style.display = "block";
-      } else {
-        endQuiz();
-      }
-    }, 2000); // Display feedback for 2 seconds before moving to the next question
-  }
-  
-
-//function to end the quiz once questions have been answered
+// Function to end the quiz
 function endQuiz() {
-  clearInterval(timerInterval);
-
-  // Display the final score
-  const quizScore = document.getElementById("quizScore");
-  quizScore.textContent = `Your Score: ${score}`;
-
-  // Hide the remaining questions
-//   document.getElementById("question1").style.display = "none";
-//   document.getElementById("question2").style.display = "none";
- }
-
-// const timerInterval = setInterval(updateTimer, 1000);
-
-endQuizTagName.setAttribute("style", "text-align: center; font-size: 40px;")
-Variables
+    quizContainer.style.display = "none"; // Hide the quiz container
+    quizScoreElement.textContent = "Your Score: " + score;
+    storeHighScore();
+  }
+  
+  // Function to store high scores in local storage
+  function storeHighScore() {
+    var initials = prompt("Enter your initials (3 characters):");
+    if (initials && initials.length === 3) {
+      var scores = JSON.parse(localStorage.getItem("scores")) || [];
+      scores.push({ score: timeLeft, initials: initials });
+      scores.sort(function (a, b) {
+        return b.score - a.score;
+      });
+      localStorage.setItem("scores", JSON.stringify(scores));
+      displayHighScores();
+    } else {
+      alert("Please enter 3 initials.");
+    }
+  }
+  
+  // Function to display high scores from local storage
+  function displayHighScores() {
+    var highScoresList = document.getElementById("highScoresList");
+    highScoresList.innerHTML = "";
+  
+    var scores = JSON.parse(localStorage.getItem("scores")) || [];
+    scores.forEach(function (scoreData, index) {
+      var listItem = document.createElement("li");
+      listItem.textContent = index + 1 + ". " + scoreData.initials + ": " + scoreData.score;
+      highScoresList.appendChild(listItem);
+    });
+  }
+  
