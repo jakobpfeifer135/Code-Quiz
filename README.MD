@@ -26,6 +26,8 @@ how to utilize my local storage function as well as timer events
 ## Installation
 
 follow my git repo link in the html or deployed link to access the rest of my work both future and past.
+https://jakobpfeifer135.github.io/Code-Quiz/
+
 
 ## Usage
 
@@ -63,3 +65,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+## Mentions
+thanks @ tutor and TA's for this assignment
